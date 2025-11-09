@@ -4,9 +4,7 @@ import './global.css'
 
 const App = () => {
 
-  const colorScheme = useColorScheme();
-
-  // Nuestros Datos
+  // Tareas de prueba
   const [tareas, setTareas] = useState([
     {id: 1, texto: "Hacer la práctica 1 (PostIt)", completada: true},
     {id: 2, texto: 'Hacer la práctica 2 (Nativewind)', completada: true},
@@ -15,11 +13,9 @@ const App = () => {
 
   const [nuevaTarea, setNuevaTarea] = useState('')
 
-  //Funcion para agregar una nueva tarea
   const agregarTarea = () => {
     
-    //Si no escribimos nada sale de la funcion
-    if (nuevaTarea.trim()==='') return
+    if (nuevaTarea.trim() === '') return
 
     const tarea = {
       id: Date.now(),
@@ -30,8 +26,6 @@ const App = () => {
     setTareas([...tareas, tarea])
     setNuevaTarea('')
   }
-
-  //Toogle cambia el valor de completado haciendo click en el checkbox 
   
   const toggleTarea = (id) => {
     setTareas(tareas.map(tarea =>
@@ -39,19 +33,16 @@ const App = () => {
     ))
   }
 
-  //Eliminar una tarea
   const eliminarTarea = (id) => {
     setTareas(tareas.filter(tarea => tarea.id !== id))
   }
 
-  //Resumen
   const tareasCompletadas = tareas.filter(item => item.completada).length
   const totalTareas = tareas.length
 
   return (
     <View className='flex-1 bg-gray-800 p-6 pt-16'>
       
-      {/* Header */}
       <View className='mb-8 w-full'>
         <Text className='text-4xl align-center font-bold text-white mb-2 text-center'>
           Tareas
@@ -77,7 +68,6 @@ const App = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Lista de Tareas */}
       <ScrollView className="flex-1">
         {tareas.map((tarea)=>(
           <View
